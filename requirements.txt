@@ -1,0 +1,8 @@
+pyautogui
+PyYAML
+label-studio
+opencv-python
+numpy
+argparse
+ultralytics
+random

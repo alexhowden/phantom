@@ -1,0 +1,37 @@
+# window dimensions duh
+window_dimensions: [[8, 675], [961, 1112]] # top left, bottom right
+left: 6
+right: 961
+top: 675
+bottom: 1112
+width: 953
+height: 437
+
+# home base buttons
+attack_button: [100, 1050] # home base -> attack
+find_match_button: [170, 975] # home base -> attack -> find match
+find_ranked_match_button: [356, 975] # home base -> attack -> find ranked match
+builder_button: [463, 695] # builder icon -> upgrade menu
+laboratory_button: [377, 695] # laboratory icon -> upgrade menu
+profile_button: [88, 695] # home base -> profile
+league_button: [87, 736] # home base -> current league
+battle_log_button: [87, 775] # home base -> battle log
+chat_button: [87, 866] # home base -> clan chat
+war_button: [87, 955] # home base -> war
+army_button: [87, 997] # home base -> view army
+battle_pass_button: [163, 1070] # home base -> battle pass
+events_button: [206, 1070] # home base -> events page
+news_button: [805, 1070] # home base -> news page
+shop_button: [862, 1054] # home base -> shop
+settings_button: [880, 996] # home base -> settings
+edit_base_button: [880, 956] # home base -> edit base layout
+
+# battle buttons
+end_battle_button: [107, 1005] # scouting/attacking state -> end battle
+surrender_button: [107, 1005] # scouting/attacking state -> end battle
+confirm_surrender_button: [555, 940] # attacking state -> end battle -> surrender
+next_button: [850, 995] # scouting state -> next base
+return_home_button: [480, 1045] # battle ended state -> return home
+
+# error handling
+reload_game_button: [480, 935] # inactivivity popup -> reload game
