@@ -1,0 +1,113 @@
+from config.valid_points import pick_random_point
+import pyautogui as pag
+from config import CONFIG
+import yaml
+import mss
+from core.state import PHANTOM
+import numpy as np
+from ultralytics import YOLO
+import time
+import sys
+import random
+from core.bot import validate_state
+
+class AttackStrategy:
+	def __init__(self):
+		self.strategies = ['super_barbs']
+		self.current_strategy = 'super_barbs'
+
+	def update_strategy(self, strategy: str):
+		if strategy not in self.strategies:
+			print(f'Invalid attack {strategy}.\n Terminating Phantom.\n')
+			sys.exit(1)
+
+		self.current_strategy = strategy
+
+	def surrender(self):
+		validate_state(desired_state='attack', err_msg='can\'t surrender.')
+
+		pag.click(CONFIG.coords.surrender_button)
+		pag.click(CONFIG.coords.confirm_surrender_button)
+
+	def end_battle(self):
+		validate_state(desired_state='search', err_msg='can\'t end battle.')
+
+		pag.click(CONFIG.coords.end_battle_button)
+
+	def return_home(self):
+		validate_state(desired_state='post', err_msg='can\'t return home.')
+
+		pag.click(CONFIG.coords.return_home_button)
+
+	def attack(self):
+		validate_state(desired_state='search', err_msg='can\'t start attack.')
+
+		match self.current_strategy:
+			case 'super_barbs':
+				self.attack_super_barbs()
+
+		print('Attacking base\n')
+
+	def attack_super_barbs(self):
+		# select super barbs
+		pag.click(CONFIG.coords.super_barbs_button)
+
+		# start battle to get rid of buttons
+		pag.click(CONFIG.coords.base_right_corner)
+
+		# deploy remaining barbarians
+		points = pick_random_point('ldplayer', n=63)
+		for point in points:
+			pag.click(point)
+
+		# use eq and lightning
+		pag.click(CONFIG.coords.earthquake_button)
+		pag.doubleClick(
+			CONFIG.coords.right - CONFIG.coords.left,
+			CONFIG.coords.bottom - CONFIG.coords.top
+		)
+		pag.doubleClick(
+			CONFIG.coords.right - CONFIG.coords.left,
+			CONFIG.coords.bottom - CONFIG.coords.top
+		)
+
+		pag.click(CONFIG.coords.lightning_button)
+		pag.doubleClick(
+			CONFIG.coords.right - CONFIG.coords.left,
+			CONFIG.coords.bottom - CONFIG.coords.top
+		)
+		pag.doubleClick(
+			CONFIG.coords.right - CONFIG.coords.left,
+			CONFIG.coords.bottom - CONFIG.coords.top
+		)
+		pag.doubleClick(
+			CONFIG.coords.right - CONFIG.coords.left,
+			CONFIG.coords.bottom - CONFIG.coords.top
+		)
+		pag.doubleClick(
+			CONFIG.coords.right - CONFIG.coords.left,
+			CONFIG.coords.bottom - CONFIG.coords.top
+		)
+
+		# move to the bottom of the base
+		pag.click(480, 1025)
+		pag.drag(xOffset=0, yOffset=-250, duration=0.25, button='left')
+
+		# deploy siege machine
+		pag.click(CONFIG.coords.siege_machine_button)
+		pag.click(CONFIG.coords.base_bottom_corner)
+
+		# deploy heroes
+		heroes = [
+			CONFIG.coords.barbarian_king_button,
+			CONFIG.coords.archer_queen_button,
+			CONFIG.coords.grand_warden_button,
+			CONFIG.coords.royal_champion_button
+		]
+
+		for hero in heroes:
+			pag.click(hero)
+			pag.click(CONFIG.coords.base_bottom_corner)
+			pag.click(hero)
+
+ATTACKSTRATEGY = AttackStrategy()

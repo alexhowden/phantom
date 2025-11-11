@@ -32,6 +32,18 @@ surrender_button: [107, 1005] # scouting/attacking state -> end battle
 confirm_surrender_button: [555, 940] # attacking state -> end battle -> surrender
 next_button: [850, 995] # scouting state -> next base
 return_home_button: [480, 1045] # battle ended state -> return home
+base_right_corner: [840, 877]
+base_bottom_corner: [505, 1015]
+
+# hotbar buttons
+super_barbs_button: [227, 1063]
+siege_machine_button: [280, 1063]
+barbarian_king_button: [337, 1063]
+archer_queen_button: [387, 1063]
+grand_warden_button: [436, 1063]
+royal_champion_button: [485, 1063]
+earthquake_button: [540, 1063]
+lightning_button: [590, 1063]
 
 # error handling
 reload_game_button: [480, 935] # inactivivity popup -> reload game

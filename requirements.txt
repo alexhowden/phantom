@@ -6,3 +6,4 @@ numpy
 argparse
 ultralytics
 random
+mss
