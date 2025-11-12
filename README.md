@@ -1,6 +1,6 @@
 # Phantom - Clash of Clans Attack Bot
 
-**Phantom** is a modular, extensible automation bot for Clash of Clans designed to perform base-searching, troop deployment, resource collection, and attack strategies with minimal manual intervention.
+**Phantom** is a modular, extensible automation bot for Clash of Clans designed to perform repeated attacks with extreme reliability and zero manual intervention.
 It uses image-recognition and configurable valid deployment points to reliably navigate and operate within the game UI.
 Currently built for the iPhone Mirroring "emulator" on MacOS.
 
