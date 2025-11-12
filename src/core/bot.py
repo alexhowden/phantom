@@ -65,15 +65,13 @@ def get_state():
 	buttons = [model.names[int(c)] for c in results.boxes.cls]
 	print(f'buttons: {buttons}')
 
-	if 'reload_game_button' in buttons:
-		state = 'inactive'
-	elif 'attack_button' in buttons:
+	if 'attack_button' in buttons:
 		state = 'home'
 	elif 'next_button' in buttons:
 		state = 'search'
 	elif 'end_battle_button' in buttons or 'surrender_button' in buttons:
 		state = 'attack'
-	elif 'surrender_button' in buttons:
+	elif 'return_home_button' in buttons:
 		state = 'post'
 	else:
 		state = 'unknown'
