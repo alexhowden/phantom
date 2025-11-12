@@ -1,5 +1,5 @@
-train: /Users/misterrobot/Desktop/Programming/phantom/src/models/training/train
-val: /Users/misterrobot/Desktop/Programming/phantom/src/models/training/val
+train: ./src/models/training/train
+val: ./src/models/training/val
 
 nc: 5
 names: ['attack_button','end_battle_button','next_button','return_home_button','surrender_button']
