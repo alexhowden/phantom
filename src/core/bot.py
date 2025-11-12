@@ -63,12 +63,15 @@ def get_state():
 	results = model.predict(source=capture_screen(), verbose=False, conf=0.8, show=False)[0]
 	time.sleep(2)
 	buttons = [model.names[int(c)] for c in results.boxes.cls]
+	print(f'buttons: {buttons}')
 
-	if 'attack_button' in buttons:
+	if 'reload_game_button' in buttons:
+		state = 'inactive'
+	elif 'attack_button' in buttons:
 		state = 'home'
 	elif 'next_button' in buttons:
 		state = 'search'
-	elif 'end_battle' in buttons or 'surrender_button' in buttons:
+	elif 'end_battle_button' in buttons or 'surrender_button' in buttons:
 		state = 'attack'
 	elif 'surrender_button' in buttons:
 		state = 'post'
@@ -103,6 +106,7 @@ def validate_state(desired_state: str, err_msg: str):
 	'''Checks if the bot is in the desired state'''
 
 	print('Validating current state...')
+	print(f'Desired state: {desired_state}')
 	state = get_state()
 
 	while state == 'unknown':

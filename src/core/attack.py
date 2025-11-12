@@ -27,6 +27,7 @@ class AttackStrategy:
 		validate_state(desired_state='attack', err_msg='can\'t surrender.')
 
 		pag.click(CONFIG.coords.surrender_button)
+		time.sleep(0.1)
 		pag.click(CONFIG.coords.confirm_surrender_button)
 
 	def end_battle(self):
@@ -42,11 +43,12 @@ class AttackStrategy:
 	def attack(self):
 		validate_state(desired_state='search', err_msg='can\'t start attack.')
 
+		print('Attacking base\n')
+
 		match self.current_strategy:
 			case 'super_barbs':
 				self.attack_super_barbs()
 
-		print('Attacking base\n')
 
 	def attack_super_barbs(self):
 		# select super barbs
@@ -56,39 +58,42 @@ class AttackStrategy:
 		pag.click(CONFIG.coords.base_right_corner)
 
 		# deploy remaining barbarians
-		points = pick_random_point('ldplayer', n=63)
+		print('Deploying super barbarians...')
+		points = pick_random_point('ldplayer', n=32)
 		for point in points:
-			pag.click(point)
+			pag.doubleClick(point)
 
 		# use eq and lightning
+		print('Deploying spells...')
 		pag.click(CONFIG.coords.earthquake_button)
 		pag.doubleClick(
-			CONFIG.coords.right - CONFIG.coords.left,
-			CONFIG.coords.bottom - CONFIG.coords.top
+			(CONFIG.coords.right + CONFIG.coords.left) / 2 + 50,
+			(CONFIG.coords.bottom + CONFIG.coords.top) / 2
 		)
 		pag.doubleClick(
-			CONFIG.coords.right - CONFIG.coords.left,
-			CONFIG.coords.bottom - CONFIG.coords.top
+			(CONFIG.coords.right + CONFIG.coords.left) / 2 + 50,
+			(CONFIG.coords.bottom + CONFIG.coords.top) / 2
 		)
 
 		pag.click(CONFIG.coords.lightning_button)
 		pag.doubleClick(
-			CONFIG.coords.right - CONFIG.coords.left,
-			CONFIG.coords.bottom - CONFIG.coords.top
+			(CONFIG.coords.right + CONFIG.coords.left) / 2 + 50,
+			(CONFIG.coords.bottom + CONFIG.coords.top) / 2
 		)
 		pag.doubleClick(
-			CONFIG.coords.right - CONFIG.coords.left,
-			CONFIG.coords.bottom - CONFIG.coords.top
+			(CONFIG.coords.right + CONFIG.coords.left) / 2 + 50,
+			(CONFIG.coords.bottom + CONFIG.coords.top) / 2
 		)
 		pag.doubleClick(
-			CONFIG.coords.right - CONFIG.coords.left,
-			CONFIG.coords.bottom - CONFIG.coords.top
+			(CONFIG.coords.right + CONFIG.coords.left) / 2 + 50,
+			(CONFIG.coords.bottom + CONFIG.coords.top) / 2
 		)
 		pag.doubleClick(
-			CONFIG.coords.right - CONFIG.coords.left,
-			CONFIG.coords.bottom - CONFIG.coords.top
+			(CONFIG.coords.right + CONFIG.coords.left) / 2 + 50,
+			(CONFIG.coords.bottom + CONFIG.coords.top) / 2
 		)
 
+		print('Deploying siege machine and heroes...')
 		# move to the bottom of the base
 		pag.click(480, 1025)
 		pag.drag(xOffset=0, yOffset=-250, duration=0.25, button='left')
@@ -108,6 +113,19 @@ class AttackStrategy:
 		for hero in heroes:
 			pag.click(hero)
 			pag.click(CONFIG.coords.base_bottom_corner)
+
+		time.sleep(3)
+
+		for hero in heroes:
 			pag.click(hero)
+
+		# print('Waiting 15...')
+		# time.sleep(5)
+		print('Waiting 10...')
+		time.sleep(5)
+		print('Waiting 5...\n')
+		time.sleep(5)
+
+
 
 ATTACKSTRATEGY = AttackStrategy()

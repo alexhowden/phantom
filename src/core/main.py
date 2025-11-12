@@ -9,26 +9,25 @@ import sys
 
 
 def run():
-	startup_banner()
-
 	start_search()
 
 	ATTACKSTRATEGY.attack()
 
-	i = 0
+	ATTACKSTRATEGY.surrender()
 
-	while True:
-		print(i)
-		time.sleep(1)
-		i += 1
-
+	ATTACKSTRATEGY.return_home()
 
 
 if __name__ == '__main__':
-	run()
+	startup_banner()
+
+	while True:
+		run()
 
 '''
 20s
 10s
 25s
+25s
+10s
 '''
