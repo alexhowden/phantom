@@ -1,5 +1,9 @@
-# window dimensions duh
-window_dimensions: [[8, 675], [961, 1112]] # top left, bottom right
+# window dimensions duh; top, left, width, height
+window_dimensions: [675, 6, 953, 437] # full screen
+state_window_dimensions: [965, 65, 840, 130] # smallest screen w/ all buttons
+gold_storage_dimensions: [690, 772, 1, 1]
+elixir_storage_dimensions: [726, 772, 1, 1]
+
 left: 6
 right: 961
 top: 675

@@ -1,14 +1,8 @@
 from config.valid_points import pick_random_point
 import pyautogui as pag
 from config import CONFIG
-import yaml
-import mss
-from core.state import PHANTOM
-import numpy as np
-from ultralytics import YOLO
 import time
 import sys
-import random
 from core.bot import validate_state
 
 class AttackStrategy:
@@ -29,16 +23,29 @@ class AttackStrategy:
 		pag.click(CONFIG.coords.surrender_button)
 		time.sleep(0.1)
 		pag.click(CONFIG.coords.confirm_surrender_button)
+		time.sleep(0.5)
 
 	def end_battle(self):
 		validate_state(desired_state='search', err_msg='can\'t end battle.')
 
 		pag.click(CONFIG.coords.end_battle_button)
+		time.sleep(1.5)
 
 	def return_home(self):
 		validate_state(desired_state='post', err_msg='can\'t return home.')
 
 		pag.click(CONFIG.coords.return_home_button)
+		time.sleep(1.5)
+
+	def search(self):
+		validate_state(desired_state='home', err_msg='can\'t search for base.')
+
+		print('Searching for base\n')
+
+		pag.doubleClick(CONFIG.coords.attack_button)
+		time.sleep(0.5)
+		pag.click(CONFIG.coords.find_match_button)
+		time.sleep(3)
 
 	def attack(self):
 		validate_state(desired_state='search', err_msg='can\'t start attack.')
@@ -49,6 +56,11 @@ class AttackStrategy:
 			case 'super_barbs':
 				self.attack_super_barbs()
 
+	def attack_sequence(self):
+		self.search()
+		self.attack()
+		self.surrender()
+		self.return_home()
 
 	def attack_super_barbs(self):
 		# select super barbs
@@ -119,8 +131,10 @@ class AttackStrategy:
 		for hero in heroes:
 			pag.click(hero)
 
-		# print('Waiting 15...')
-		# time.sleep(5)
+		print('Waiting 20...')
+		time.sleep(5)
+		print('Waiting 15...')
+		time.sleep(5)
 		print('Waiting 10...')
 		time.sleep(5)
 		print('Waiting 5...\n')
