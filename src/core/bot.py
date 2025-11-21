@@ -124,6 +124,8 @@ def val_start_search():
 	pag.doubleClick(CONFIG.coords.attack_button)
 	time.sleep(0.5)
 	pag.click(CONFIG.coords.find_match_button)
+	time.sleep(0.5)
+	pag.click(CONFIG.coords.confirm_attack_button)
 	time.sleep(3)
 
 def validate_state(desired_state: str, err_msg: str):

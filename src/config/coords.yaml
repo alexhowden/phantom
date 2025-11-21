@@ -14,6 +14,7 @@ height: 437
 # home base buttons
 attack_button: [100, 1050] # home base -> attack
 find_match_button: [170, 975] # home base -> attack -> find match
+confirm_attack_button: [790, 1060] # home base -> attack -> find match -> attack
 find_ranked_match_button: [356, 975] # home base -> attack -> find ranked match
 builder_button: [463, 695] # builder icon -> upgrade menu
 laboratory_button: [377, 695] # laboratory icon -> upgrade menu
